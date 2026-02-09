@@ -13,6 +13,7 @@ var level_completed := false
 var has_started := false
 var player_was_started := false  # Track for restart detection
 var complete_label: Label = null  # Completion message label
+var play_again_btn: Node2D = null  # Play again button
 var current_cell := 0
 var cell_state := 0.5
 
@@ -857,6 +858,12 @@ func _restart() -> void:
 	if complete_label and is_instance_valid(complete_label):
 		complete_label.queue_free()
 		complete_label = null
+	
+	# Remove play again button if exists
+	if play_again_btn and is_instance_valid(play_again_btn):
+		play_again_btn.queue_free()
+		play_again_btn = null
+	
 	player.global_position = Vector2(START_X - 100, BASE_Y)
 	player.velocity = Vector2.ZERO
 	player.has_started = false
@@ -912,22 +919,26 @@ func _complete() -> void:
 	_create_play_again_button()
 
 func _create_play_again_button() -> void:
-	var restart_btn = Node2D.new()
-	restart_btn.position = player.global_position + Vector2(300, 0)
-	restart_btn.z_index = 20
-	add_child(restart_btn)
+	# Remove existing button if any
+	if play_again_btn and is_instance_valid(play_again_btn):
+		play_again_btn.queue_free()
+	
+	play_again_btn = Node2D.new()
+	play_again_btn.position = player.global_position + Vector2(300, 0)
+	play_again_btn.z_index = 20
+	add_child(play_again_btn)
 	# Glow
 	var glow = ColorRect.new()
 	glow.size = Vector2(110, 70)
 	glow.position = Vector2(-55, -35)
 	glow.color = Color(0.2, 1.0, 0.5, 0.2)
-	restart_btn.add_child(glow)
+	play_again_btn.add_child(glow)
 	# Background
 	var bg = ColorRect.new()
 	bg.size = Vector2(100, 60)
 	bg.position = Vector2(-50, -30)
 	bg.color = Color(0.1, 0.2, 0.15, 0.9)
-	restart_btn.add_child(bg)
+	play_again_btn.add_child(bg)
 	# Border
 	var border = ReferenceRect.new()
 	border.size = Vector2(100, 60)
@@ -935,7 +946,7 @@ func _create_play_again_button() -> void:
 	border.border_color = Color(0.4, 1.0, 0.6, 0.95)
 	border.border_width = 3
 	border.editor_only = false
-	restart_btn.add_child(border)
+	play_again_btn.add_child(border)
 	# Label
 	var lbl = Label.new()
 	lbl.text = "PLAY\nAGAIN"
@@ -943,7 +954,7 @@ func _create_play_again_button() -> void:
 	lbl.add_theme_font_size_override("font_size", 16)
 	lbl.add_theme_color_override("font_color", Color(0.4, 1.0, 0.6, 1.0))
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	restart_btn.add_child(lbl)
+	play_again_btn.add_child(lbl)
 	# Collision
 	var area = Area2D.new()
 	area.collision_layer = 0
@@ -955,7 +966,7 @@ func _create_play_again_button() -> void:
 	coll.shape = shape
 	area.add_child(coll)
 	area.body_entered.connect(_on_play_again_entered)
-	restart_btn.add_child(area)
+	play_again_btn.add_child(area)
 
 func _on_play_again_entered(body: Node2D) -> void:
 	if body != player:

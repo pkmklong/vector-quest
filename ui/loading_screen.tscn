@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://loading_screen"]
+
+[ext_resource type="Script" path="res://ui/loading_screen.gd" id="1_script"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.04, 1)
+
+[node name="TitleLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 180.0
+offset_right = 150.0
+offset_bottom = 230.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.4, 0.7, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "VECTOR QUEST"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 230.0
+offset_right = 100.0
+offset_bottom = 255.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "Navigate the Neural Network"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 300.0
+offset_right = 150.0
+offset_bottom = 320.0
+grow_horizontal = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="StatusLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 330.0
+offset_right = 150.0
+offset_bottom = 355.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.7, 0.8)
+theme_override_font_sizes/font_size = 12
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4, 0.4, 0.5, 0.6)
+theme_override_font_sizes/font_size = 11
+text = "Arrow keys or WASD to move"
+horizontal_alignment = 1

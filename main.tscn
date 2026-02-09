@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8v3k2m1n4p5"]
+
+[ext_resource type="PackedScene" uid="uid://b7x2y3z4a5b6" path="res://player/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://d1w2e3i4g5h6" path="res://objects/weight.tscn" id="2_weight"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.039, 0.039, 0.059, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(960, 540)
+
+[node name="Weights" type="Node2D" parent="."]
+
+[node name="Weight1" parent="Weights" instance=ExtResource("2_weight")]
+position = Vector2(600, 400)
+push_direction = Vector2(1, 0)
+push_strength = 300.0
+size = Vector2(150, 100)
+
+[node name="Weight2" parent="Weights" instance=ExtResource("2_weight")]
+position = Vector2(1300, 400)
+push_direction = Vector2(-0.5, -0.866)
+push_strength = 250.0
+size = Vector2(120, 120)
+weight_color = Color(1, 0.5, 0.3, 0.3)
+
+[node name="Weight3" parent="Weights" instance=ExtResource("2_weight")]
+position = Vector2(960, 700)
+push_direction = Vector2(0, -1)
+push_strength = 400.0
+size = Vector2(200, 80)
+weight_color = Color(0.3, 1, 0.5, 0.3)

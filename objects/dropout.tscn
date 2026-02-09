@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdr0p0ut001"]
+
+[ext_resource type="Script" path="res://objects/dropout.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dropout"]
+radius = 35.0
+
+[node name="Dropout" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dropout")
+
+[node name="OuterGlow" type="Polygon2D" parent="."]
+color = Color(0.4, 0.1, 0.5, 0.15)
+
+[node name="AccretionDisk" type="Polygon2D" parent="."]
+color = Color(0.6, 0.2, 0.8, 0.4)
+
+[node name="EventHorizon" type="Polygon2D" parent="."]
+color = Color(0.1, 0, 0.15, 0.9)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = -40.0
+theme_override_colors/font_color = Color(0.6, 0.3, 0.7, 0.7)
+theme_override_font_sizes/font_size = 12
+text = "DROPOUT"
+horizontal_alignment = 1

@@ -1,0 +1,22 @@
+[gd_scene load_steps=1 format=3 uid="uid://cn3ur0n1v2s3"]
+
+[node name="Neuron" type="Node2D"]
+
+[node name="GlowOuter" type="Polygon2D" parent="."]
+modulate = Color(0.5, 0.3, 1, 0.1)
+scale = Vector2(3, 3)
+polygon = PackedVector2Array(-20, 0, -14, -14, 0, -20, 14, -14, 20, 0, 14, 14, 0, 20, -14, 14)
+
+[node name="GlowInner" type="Polygon2D" parent="."]
+modulate = Color(0.5, 0.3, 1, 0.2)
+scale = Vector2(1.8, 1.8)
+polygon = PackedVector2Array(-20, 0, -14, -14, 0, -20, 14, -14, 20, 0, 14, 14, 0, 20, -14, 14)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(0.6, 0.4, 1, 1)
+polygon = PackedVector2Array(-20, 0, -14, -14, 0, -20, 14, -14, 20, 0, 14, 14, 0, 20, -14, 14)
+
+[node name="Highlight" type="Polygon2D" parent="."]
+scale = Vector2(0.5, 0.5)
+color = Color(0.9, 0.8, 1, 0.8)
+polygon = PackedVector2Array(-20, 0, -14, -14, 0, -20, 14, -14, 20, 0, 14, 14, 0, 20, -14, 14)

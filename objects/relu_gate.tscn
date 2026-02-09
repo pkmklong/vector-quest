@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8x7y6z5w4v3"]
+
+[ext_resource type="Script" path="res://objects/relu_gate.gd" id="1_script"]
+
+[node name="ReluGate" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+script = ExtResource("1_script")
+
+[node name="GlowRing" type="Polygon2D" parent="."]
+z_index = -1
+color = Color(0.9, 0.2, 0.2, 0.2)
+
+[node name="InnerGlow" type="Polygon2D" parent="."]
+color = Color(0.9, 0.2, 0.2, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Symbol" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 0.9)
+theme_override_font_sizes/font_size = 12
+text = "ReLU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FlashTimer" type="Timer" parent="."]
+one_shot = true

@@ -1,0 +1,188 @@
+[gd_scene load_steps=5 format=3 uid="uid://title_screen"]
+
+[ext_resource type="Script" path="res://ui/title_screen.gd" id="1_title"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_normal"]
+bg_color = Color(0.12, 0.14, 0.22, 0.9)
+border_color = Color(0.4, 1.0, 0.6, 1.0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_left = 16
+corner_radius_bottom_right = 16
+content_margin_left = 50
+content_margin_right = 50
+content_margin_top = 18
+content_margin_bottom = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_hover"]
+bg_color = Color(0.16, 0.18, 0.30, 0.95)
+border_color = Color(0.4, 1.0, 0.6, 1.0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_left = 16
+corner_radius_bottom_right = 16
+content_margin_left = 50
+content_margin_right = 50
+content_margin_top = 18
+content_margin_bottom = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play_pressed"]
+bg_color = Color(0.10, 0.12, 0.20, 0.95)
+border_color = Color(0.4, 1.0, 0.6, 1.0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_left = 16
+corner_radius_bottom_right = 16
+content_margin_left = 50
+content_margin_right = 50
+content_margin_top = 18
+content_margin_bottom = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.09, 0.14, 0.85)
+border_color = Color(0.4, 0.8, 1.0, 0.4)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_left = 18
+corner_radius_bottom_right = 18
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_title")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.04, 0.03, 0.06, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ContentVBox" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Title" type="Label" parent="CenterContainer/ContentVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 120
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+text = "VECTOR QUEST"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/ContentVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.6, 0.7, 0.8, 0.8)
+text = "Navigate Neural Networks"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CenterContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/ContentVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(340, 72)
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.4, 1, 0.6, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_play_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_play_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_play_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_play_hover")
+text = "PLAY"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="InfoRow" type="HBoxContainer" parent="CenterContainer/ContentVBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 28
+
+[node name="PremisePanel" type="PanelContainer" parent="CenterContainer/ContentVBox/InfoRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(460, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="PremiseMargin" type="MarginContainer" parent="CenterContainer/ContentVBox/InfoRow/PremisePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="Premise" type="Label" parent="CenterContainer/ContentVBox/InfoRow/PremisePanel/PremiseMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.78, 0.86, 1.0, 0.95)
+text = "MISSION BRIEFING
+
+You've traveled deep into Latent Space.
+Survive unstable gradients, avoid dropout
+voids, and reach the output node to
+stabilize the run.
+
+Complete levels to reduce BCE loss and
+unlock deeper architectures."
+
+[node name="HowToPanel" type="PanelContainer" parent="CenterContainer/ContentVBox/InfoRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(460, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="HowToMargin" type="MarginContainer" parent="CenterContainer/ContentVBox/InfoRow/HowToPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="HowTo" type="Label" parent="CenterContainer/ContentVBox/InfoRow/HowToPanel/HowToMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.82, 0.88, 0.95, 0.95)
+text = "HOW TO PLAY
+
+Arrow Keys / WASD to move
+
+Pass through the INPUT LAYER to start
+Avoid hazards (dropout, negative weights)
+Keep activation above 0.5
+Reach OUTPUT to win"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="CenterContainer/ContentVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Disclaimer" type="Label" parent="CenterContainer/ContentVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.6, 0.65, 0.7, 0.8)
+text = "Architectures are simplified abstractions for learning key concepts."
+horizontal_alignment = 1

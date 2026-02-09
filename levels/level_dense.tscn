@@ -1,0 +1,123 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl3v3ld3ns3"]
+
+[ext_resource type="Script" path="res://levels/level_dense.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://b7x2y3z4a5b6" path="res://player/player.tscn" id="2_player"]
+
+[node name="LevelDense" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 2000.0
+offset_bottom = 2000.0
+color = Color(0.02, 0.02, 0.04, 1)
+
+[node name="Connections" type="Node2D" parent="."]
+z_index = -5
+
+[node name="Neurons" type="Node2D" parent="."]
+z_index = 5
+
+[node name="Weights" type="Node2D" parent="."]
+z_index = 1
+
+[node name="ReluGates" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Dropouts" type="Node2D" parent="."]
+z_index = 3
+
+[node name="BatchNorms" type="Node2D" parent="."]
+z_index = 0
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = -200.0
+offset_top = -450.0
+offset_right = 200.0
+offset_bottom = -400.0
+theme_override_colors/font_color = Color(0.6, 0.5, 0.9, 0.8)
+theme_override_font_sizes/font_size = 32
+text = "DENSE NETWORK"
+horizontal_alignment = 1
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="BadgeContainer" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="Control" parent="UILayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UILayer/HealthBar"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 0.9)
+theme_override_font_sizes/font_size = 18
+text = "Activation"
+horizontal_alignment = 1
+
+[node name="BarBG" type="ColorRect" parent="UILayer/HealthBar"]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 400.0
+offset_bottom = 52.0
+color = Color(0.1, 0.1, 0.15, 0.9)
+
+[node name="BarFill" type="ColorRect" parent="UILayer/HealthBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 30.0
+offset_right = 396.0
+offset_bottom = 50.0
+color = Color(0.3, 0.9, 1, 1)
+
+[node name="GradientWarning" type="Label" parent="UILayer"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 48.0
+offset_right = -20.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "Activation Strength"
+horizontal_alignment = 2
+
+[node name="ExplodingWarning" type="Label" parent="UILayer"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 70.0
+offset_right = -20.0
+offset_bottom = 92.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.4, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "EXPLODING GRADIENT 3.0s"
+horizontal_alignment = 2

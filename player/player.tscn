@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7x2y3z4a5b6"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 15.0
+
+[sub_resource type="Curve" id="Curve_width"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0.1), -1.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_color"]
+colors = PackedColorArray(1, 1, 1, 1, 0.3, 0.9, 1, 0.8, 0.1, 0.5, 0.8, 0)
+offsets = PackedFloat32Array(0, 0.3, 1)
+
+[sub_resource type="Curve" id="Curve_glow_width"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_glow"]
+colors = PackedColorArray(0.2, 0.8, 1, 0.6, 0.1, 0.4, 0.8, 0)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_player")
+
+[node name="TrailGlow" type="Line2D" parent="."]
+top_level = true
+z_index = -2
+width = 40.0
+width_curve = SubResource("Curve_glow_width")
+default_color = Color(0.2, 0.8, 1, 0.5)
+gradient = SubResource("Gradient_glow")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+z_index = -1
+width = 18.0
+width_curve = SubResource("Curve_width")
+default_color = Color(1, 1, 1, 1)
+gradient = SubResource("Gradient_color")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="GlowOuter" type="Polygon2D" parent="Visuals"]
+modulate = Color(0.2, 0.85, 1, 0.15)
+scale = Vector2(2.5, 2.5)
+polygon = PackedVector2Array(0, -20, 15, 15, 0, 8, -15, 15)
+
+[node name="GlowMid" type="Polygon2D" parent="Visuals"]
+modulate = Color(0.2, 0.85, 1, 0.3)
+scale = Vector2(1.6, 1.6)
+polygon = PackedVector2Array(0, -20, 15, 15, 0, 8, -15, 15)
+
+[node name="Triangle" type="Polygon2D" parent="Visuals"]
+color = Color(0.3, 0.9, 1, 1)
+polygon = PackedVector2Array(0, -20, 15, 15, 0, 8, -15, 15)
+
+[node name="TriangleCore" type="Polygon2D" parent="Visuals"]
+scale = Vector2(0.6, 0.6)
+color = Color(0.8, 1, 1, 1)
+polygon = PackedVector2Array(0, -20, 15, 15, 0, 8, -15, 15)
+
+[node name="MagnitudeBar" type="Node2D" parent="."]
+top_level = true
+z_index = 10
+
+[node name="Background" type="ColorRect" parent="MagnitudeBar"]
+offset_left = -25.0
+offset_top = -4.0
+offset_right = 25.0
+offset_bottom = 4.0
+color = Color(0.05, 0.05, 0.1, 0.9)
+
+[node name="Fill" type="ColorRect" parent="MagnitudeBar"]
+offset_left = -24.0
+offset_top = -3.0
+offset_right = 24.0
+offset_bottom = 3.0
+color = Color(0.3, 0.9, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.05, 1.05)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0

@@ -1,0 +1,28 @@
+# Godot 4+ specific ignores
+.godot/
+
+# Godot-specific ignores
+*.translation
+
+# Imported textures and samples
+.import/
+
+# Export templates and builds
+*.pck
+*.zip
+export/
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

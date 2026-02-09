@@ -1,0 +1,49 @@
+[gd_scene load_steps=1 format=3 uid="uid://cb4dg3u1001"]
+
+[node name="Badge" type="Control"]
+custom_minimum_size = Vector2(180, 45)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 45.0
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.9)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="Label" parent="HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 24
+text = "OK"
+vertical_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "LEVEL COMPLETE"
+
+[node name="Subtitle" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 0.6, 1)
+theme_override_font_sizes/font_size = 10
+text = "Well done!"

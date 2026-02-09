@@ -12,6 +12,7 @@ var sidebar: Control
 var level_completed := false
 var has_started := false
 var player_was_started := false  # Track for restart detection
+var complete_label: Label = null  # Completion message label
 var current_cell := 0
 var cell_state := 0.5
 
@@ -851,6 +852,11 @@ func _restart() -> void:
 	player_was_started = false
 	current_cell = 0
 	cell_state = 0.5
+	
+	# Remove completion label if exists
+	if complete_label and is_instance_valid(complete_label):
+		complete_label.queue_free()
+		complete_label = null
 	player.global_position = Vector2(START_X - 100, BASE_Y)
 	player.velocity = Vector2.ZERO
 	player.has_started = false
@@ -884,8 +890,10 @@ func _complete() -> void:
 	if LevelManager:
 		LevelManager.complete_level("rnn", bce_loss)
 	
-	# Show completion message to the right of the player
-	var complete_label = Label.new()
+	# Show completion message to the right of the player (remove old one first)
+	if complete_label and is_instance_valid(complete_label):
+		complete_label.queue_free()
+	complete_label = Label.new()
 	complete_label.text = "LSTM COMPLETE!\n\nPredicting next token...\nConfidence: %.2f\nBCE Loss: %.3f" % [confidence, bce_loss]
 	complete_label.add_theme_font_size_override("font_size", 24)
 	complete_label.add_theme_color_override("font_color", Color(0.4, 1.0, 0.6, 1.0))

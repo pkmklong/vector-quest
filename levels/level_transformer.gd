@@ -15,6 +15,7 @@ var threshold_line: ColorRect
 var level_completed := false
 var has_started := false
 var player_was_started := false
+var complete_label: Label = null  # Completion message label
 var current_phase := 0  # 0=embedding, 1=encoder_attn, 2=encoder_ff, 3=decoder_attn, 4=decoder_ff, 5=output
 
 # Layout constants
@@ -1240,6 +1241,11 @@ func _restart() -> void:
 	keys_matched = 0
 	masks_hit = 0
 	
+	# Remove completion label if exists
+	if complete_label and is_instance_valid(complete_label):
+		complete_label.queue_free()
+		complete_label = null
+	
 	player.global_position = Vector2(START_X - 100, BASE_Y)
 	player.velocity = Vector2.ZERO
 	player.has_started = false
@@ -1269,7 +1275,10 @@ func _complete() -> void:
 	if LevelManager:
 		LevelManager.complete_level("transformer", bce_loss)
 	
-	var complete_label = Label.new()
+	# Remove old completion label if exists
+	if complete_label and is_instance_valid(complete_label):
+		complete_label.queue_free()
+	complete_label = Label.new()
 	complete_label.text = "TRANSFORMER COMPLETE!\n\nPredicting: 'cat'\nConfidence: %.2f\nCross-Entropy: %.3f" % [confidence, bce_loss]
 	complete_label.add_theme_font_size_override("font_size", 24)
 	complete_label.add_theme_color_override("font_color", Color(0.4, 1.0, 0.6, 1.0))

@@ -25,6 +25,7 @@ const MAX_POOL_BOOST := 0.20  # Activation gain per MAX pool collected (can reco
 var kernels: Array[Dictionary] = []  # Each kernel: {visual, area, pos, layer_idx, grid_offset}
 var level_completed := false
 var has_started := false
+var complete_label: Label = null  # Completion message label
 
 # Start mechanic
 var start_x_threshold: float = 0.0  # X position of first layer
@@ -821,6 +822,10 @@ func _restart_level() -> void:
 	if restart_icon_node != null:
 		restart_icon_node.queue_free()
 		restart_icon_node = null
+	# Remove completion label if exists
+	if complete_label and is_instance_valid(complete_label):
+		complete_label.queue_free()
+		complete_label = null
 	
 	# Reset max pool zones
 	max_pools_collected = 0
@@ -858,8 +863,10 @@ func _complete_level() -> void:
 	if player.has_method("complete_level"):
 		player.complete_level()
 	
-	# Show completion
-	var complete_label := Label.new()
+	# Show completion (remove old one first)
+	if complete_label and is_instance_valid(complete_label):
+		complete_label.queue_free()
+	complete_label = Label.new()
 	var pool_text := ""
 	if max_pools_total > 0:
 		pool_text = "\nMax Pools: %d/%d" % [max_pools_collected, max_pools_total]
